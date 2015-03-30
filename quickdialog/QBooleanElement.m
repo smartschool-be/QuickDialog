@@ -102,7 +102,7 @@
     boolButton.selected = _boolValue;
     if (_controller!=nil && self.controllerAccessoryAction!=nil) {
         if ([_controller respondsToSelector:@selector(controllerAccessoryAction)]) {
-            [(id)controller controllerAccessoryAction];
+            [(id)_controller controllerAccessoryAction];
         }  else {
             NSLog(@"No method '%@' was found on controller %@", self.controllerAccessoryAction, [_controller class]);
         }
