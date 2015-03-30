@@ -1,13 +1,13 @@
-//                                
+//
 // Copyright 2011 ESCOZ Inc  - http://escoz.com
-// 
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
-// file except in compliance with the License. You may obtain a copy of the License at 
-// 
-// http://www.apache.org/licenses/LICENSE-2.0 
-// 
+//
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+// file except in compliance with the License. You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
 // Unless required by applicable law or agreed to in writing, software distributed under
-// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
@@ -57,12 +57,12 @@
 
 - (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
     QTableViewCell *cell= [self getOrCreateEmptyCell:tableView];
-
+    
     [cell applyAppearanceForElement:self];
-
-    cell.textLabel.text = nil; 
-    cell.detailTextLabel.text = nil; 
-    cell.imageView.image = nil; 
+    
+    cell.textLabel.text = nil;
+    cell.detailTextLabel.text = nil;
+    cell.imageView.image = nil;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.showsReorderControl = YES;
     cell.accessoryView = nil;
@@ -80,15 +80,11 @@
 
 - (void)handleElementSelected:(QuickDialogController *)controller {
     if (_onSelected!= nil)
-          _onSelected();
-
+        _onSelected();
+    
     if (self.controllerAction!=NULL && !controller.quickDialogTableView.editing){
-        SEL selector = NSSelectorFromString(self.controllerAction);
-        if ([controller respondsToSelector:selector]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [controller performSelector:selector withObject:self];
-#pragma clang diagnostic pop
+        if ([controller respondsToSelector:@selector(controllerAction)]) {
+            [(id)controller controllerAction];
         }  else {
             NSLog(@"No method '%@' was found on controller %@", self.controllerAction, [controller class]);
         }
@@ -97,16 +93,12 @@
 
 - (void)selectedAccessory:(QuickDialogTableView *)tableView  controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath{
     if (self.controllerAccessoryAction!=NULL){
-            SEL selector = NSSelectorFromString(self.controllerAccessoryAction);
-            if ([controller respondsToSelector:selector]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                [controller performSelector:selector withObject:self];
-#pragma clang diagnostic pop
-            }  else {
-                NSLog(@"No method '%@' was found on controller %@", self.controllerAccessoryAction, [controller class]);
-            }
+        if ([controller respondsToSelector:@selector(controllerAccessoryAction)]) {
+            [(id)controller controllerAccessoryAction];
+        }  else {
+            NSLog(@"No method '%@' was found on controller %@", self.controllerAccessoryAction, [controller class]);
         }
+    }
 }
 
 - (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
