@@ -87,8 +87,9 @@
         _onSelected();
 
     if (self.controllerAction!=NULL && !controller.quickDialogTableView.editing){
-        if ([controller respondsToSelector:@selector(controllerAction)]) {
-            [(id)controller controllerAction];
+        SEL selector = NSSelectorFromString(self.controllerAction);
+        if ([controller respondsToSelector:selector]) {
+            [(id)controller performSelector:selector withObject:controller];
         }  else {
             NSLog(@"No method '%@' was found on controller %@", self.controllerAction, [controller class]);
         }
@@ -97,8 +98,9 @@
 
 - (void)selectedAccessory:(QuickDialogTableView *)tableView  controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath{
     if (self.controllerAccessoryAction!=NULL){
-        if ([controller respondsToSelector:@selector(controllerAccessoryAction)]) {
-            [(id)controller controllerAccessoryAction];
+        SEL selector = NSSelectorFromString(self.controllerAccessoryAction);
+        if ([controller respondsToSelector:selector]) {
+            [(id)controller performSelector:selector withObject:controller];
         }  else {
             NSLog(@"No method '%@' was found on controller %@", self.controllerAccessoryAction, [controller class]);
         }
