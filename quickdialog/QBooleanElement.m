@@ -98,7 +98,7 @@
     self.boolValue = !boolButton.selected;
     boolButton.selected = _boolValue;
     if (_controller!=nil && self.controllerAccessoryAction!=nil) {
-        [(id)controller performSelector:selector withObject:controller];
+        SEL selector = NSSelectorFromString(self.controllerAccessoryAction);
         if ([_controller respondsToSelector:selector]) {
             [(id)_controller performSelector:selector withObject:_controller];
         }  else {
