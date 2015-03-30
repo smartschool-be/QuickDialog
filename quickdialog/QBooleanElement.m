@@ -1,13 +1,13 @@
-//                                
+//
 // Copyright 2011 ESCOZ Inc  - http://escoz.com
-// 
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
-// file except in compliance with the License. You may obtain a copy of the License at 
-// 
-// http://www.apache.org/licenses/LICENSE-2.0 
-// 
+//
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+// file except in compliance with the License. You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
 // Unless required by applicable law or agreed to in writing, software distributed under
-// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
@@ -100,12 +100,18 @@
 - (void)buttonPressed:(UIButton *)boolButton {
     self.boolValue = !boolButton.selected;
     boolButton.selected = _boolValue;
-    [self performAccessoryAction];
+    if (_controller!=nil && self.controllerAccessoryAction!=nil) {
+        if ([_controller respondsToSelector:@selector(controllerAccessoryAction)]) {
+            [(id)controller controllerAccessoryAction];
+        }  else {
+            NSLog(@"No method '%@' was found on controller %@", self.controllerAccessoryAction, [_controller class]);
+        }
+    }
 }
 
 -(void)setBoolValue:(BOOL)boolValue {
     _boolValue = boolValue;
-    
+
     [self handleEditingChanged];
 }
 
@@ -117,8 +123,8 @@
 }
 
 - (void)fetchValueIntoObject:(id)obj {
-	if (_key==nil)
-		return;
+        if (_key==nil)
+                return;
     [obj setValue:[NSNumber numberWithBool:self.boolValue] forKey:_key];
 }
 

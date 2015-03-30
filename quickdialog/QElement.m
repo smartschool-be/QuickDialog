@@ -82,20 +82,27 @@
     return cell;
 }
 
+- (void)handleElementSelected:(QuickDialogController *)controller {
+    if (_onSelected!= nil)
+        _onSelected();
 
+    if (self.controllerAction!=NULL && !controller.quickDialogTableView.editing){
+        if ([controller respondsToSelector:@selector(controllerAction)]) {
+            [(id)controller controllerAction];
+        }  else {
+            NSLog(@"No method '%@' was found on controller %@", self.controllerAction, [controller class]);
+        }
+    }
+}
 
 - (void)selectedAccessory:(QuickDialogTableView *)tableView  controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath{
     if (self.controllerAccessoryAction!=NULL){
-            SEL selector = NSSelectorFromString(self.controllerAccessoryAction);
-            if ([controller respondsToSelector:selector]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                [controller performSelector:selector withObject:self];
-#pragma clang diagnostic pop
-            }  else {
-                NSLog(@"No method '%@' was found on controller %@", self.controllerAccessoryAction, [controller class]);
-            }
+        if ([controller respondsToSelector:@selector(controllerAccessoryAction)]) {
+            [(id)controller controllerAccessoryAction];
+        }  else {
+            NSLog(@"No method '%@' was found on controller %@", self.controllerAccessoryAction, [controller class]);
         }
+    }
 }
 
 - (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
