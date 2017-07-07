@@ -15,6 +15,12 @@ Pod::Spec.new do |s|
 
   s.source_files = 'quickdialog', '*.{h,m}'
   s.requires_arc = true
+  
+  s.default_subspec = "Core"
+
+  s.subspec "Core" do |sp|
+    sp.source_files = 'quickdialog', '*.{h,m}'
+  end
 
   s.subspec "Extras" do |sp|
     sp.source_files = 'extras', '*.{h,m}'
