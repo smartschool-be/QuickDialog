@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'QuickDialog'
-  s.version  = '0.9.1'
+  s.version  = '1.0.2'
   s.platform = :ios, '5.0'
   s.license  = 'Apache License, Version 2.0'
   s.summary  = 'Quick and easy dialog screens for iOS.'
@@ -13,9 +13,7 @@ Pod::Spec.new do |s|
                    'and efficient, you can create forms with multiple text fields, or with ' \
                    'thousands of items with no sweat!'
 
-  s.source_files = 'quickdialog', '*.{h,m}'
   s.requires_arc = true
-  
   s.default_subspec = "Core"
 
   s.subspec "Core" do |sp|
@@ -23,12 +21,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "Extras" do |sp|
+    sp.dependency 'QuickDialog/Core'
     sp.source_files = 'extras', '*.{h,m}'
   end
 
-  s.prefix_header_contents = <<-EOS
-#ifdef __OBJC__
-    #import "QuickDialog.h"
-#endif
-EOS
+
 end

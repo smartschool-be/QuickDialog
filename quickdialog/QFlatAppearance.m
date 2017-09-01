@@ -6,6 +6,7 @@
 
 
 #import "QFlatAppearance.h"
+#import "QSection.h"
 
 
 @implementation QFlatAppearance {
@@ -69,5 +70,10 @@
     [super cell:cell willAppearForElement:element atIndexPath:path];
 }
 
+- (CGFloat)heightForHeaderInSection:(QSection *)section andTableView:(QuickDialogTableView *)tableView andIndex:(NSInteger)index {
+    if (section.headerView!=nil)
+        return section.headerView.bounds.size.height;
+    return [super heightForHeaderInSection:section andTableView:tableView andIndex:index];
+}
 
 @end

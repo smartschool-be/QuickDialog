@@ -12,22 +12,20 @@
 // permissions and limitations under the License.
 //
 
-
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "QuickDialogController.h"
-#import "QuickDialogTableView.h"
+
+@class QElement;
+@class QSection;
+
+@protocol QuickDialogDelegate  <NSObject>
 
 
-@interface QuickDialogTableDelegate : NSObject<UITableViewDelegate> {
+@optional
 
-@private
-    __unsafe_unretained QuickDialogTableView *_tableView;
-}
+-(void) cell:(UITableViewCell *)cell willAppearForElement:(QElement *)element atIndexPath:(NSIndexPath *)indexPath;
 
-- (id<UITableViewDelegate, UIScrollViewDelegate>)initForTableView:(QuickDialogTableView *)tableView;
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath;
-
+-(void) header:(UIView *)header willAppearForSection:(QSection *)section atIndex:(NSInteger)indexPath;
+-(void) footer:(UIView *)footer willAppearForSection:(QSection *)section atIndex:(NSInteger)indexPath;
 
 @end
+
