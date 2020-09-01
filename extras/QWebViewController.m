@@ -1,13 +1,13 @@
-//                                
+//
 // Copyright 2011 ESCOZ Inc  - http://escoz.com
-// 
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
-// file except in compliance with the License. You may obtain a copy of the License at 
-// 
-// http://www.apache.org/licenses/LICENSE-2.0 
-// 
+//
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+// file except in compliance with the License. You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
 // Unless required by applicable law or agreed to in writing, software distributed under
-// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
@@ -29,7 +29,7 @@
     NSArray *_urlToolbarItems;
 }
 - (QWebViewController *)initWithHTML:(NSString *)html {
-	
+    
     self = [super init];
     if (self!=nil){
         _html = html;
@@ -41,9 +41,8 @@
 
 - (void)loadView {
     [super loadView];
-    _webView = [[UIWebView alloc] init];
-    _webView.delegate = self;
-    _webView.scalesPageToFit = YES;
+    _webView = [[WKWebView alloc] init];
+    _webView.UIDelegate = self;
     self.view = _webView;
 
     UIImage *backImage = [self createBackArrowImage];
@@ -55,9 +54,9 @@
     _btForward.enabled = NO;
 
     UIBarButtonItem *spacer1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-  		spacer1.width = 30;
-  		UIBarButtonItem *spacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-  		spacer2.width = 30;
+          spacer1.width = 30;
+          UIBarButtonItem *spacer2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+          spacer2.width = 30;
     _urlToolbarItems = [NSArray arrayWithObjects:
               _btBack,
               spacer1,
@@ -106,33 +105,38 @@
 }
 
 - (void)actionGoToSafari {
-    [[UIApplication sharedApplication] openURL:[_webView.request mainDocumentURL]];
+    [[UIApplication sharedApplication] openURL: _webView.URL];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	
-	_previousToolbarState = self.navigationController.toolbarHidden;
+    
+    _previousToolbarState = self.navigationController.toolbarHidden;
 
-	if (_html) {
+    if (_html) {
         [_webView loadHTMLString:_html baseURL:nil];
-		self.navigationController.toolbarHidden = YES;
+        self.navigationController.toolbarHidden = YES;
         self.toolbarItems = nil;
-	}
-	else {
+    }
+    else {
         NSURL *url = [_url hasPrefix:@"/"]? [NSURL fileURLWithPath:_url] : [NSURL URLWithString:_url];
         [_webView loadRequest:[NSURLRequest requestWithURL:url]];
-		self.navigationController.toolbarHidden = NO;
+        self.navigationController.toolbarHidden = NO;
 
         self.toolbarItems = _urlToolbarItems;
-	}
+    }
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    return YES;
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+       if (navigationAction.navigationType == UIWebViewNavigationTypeLinkClicked) {
+
+       }
+       NSString *url = [navigationAction.request.URL query];
+
+       decisionHandler(WKNavigationActionPolicyAllow);
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [indicator startAnimating];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:indicator];
@@ -145,16 +149,17 @@
     }
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     self.navigationItem.rightBarButtonItem = nil;
-    NSString *titleFromHTML = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    if (titleFromHTML!=nil && ![titleFromHTML isEqualToString:@""])
-        self.title = titleFromHTML;
+    [_webView evaluateJavaScript:@"document.title" completionHandler:^(id _Nullable titleFromHTML, NSError * _Nullable error) {
+        if (titleFromHTML!=nil && ![titleFromHTML isEqualToString:@""])
+            self.title = titleFromHTML;
 
-    _firstPageFinished = YES;
+        _firstPageFinished = YES;
+    }];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     if (error.code==-999)
         return;
     self.navigationItem.rightBarButtonItem = nil;
@@ -165,9 +170,9 @@
 
 - (UIImage *)createBackArrowImage
 {
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-	CGContextRef context = CGBitmapContextCreate(nil,27,27,8,0, colorSpace,(CGBitmapInfo)kCGImageAlphaPremultipliedLast);
-	CFRelease(colorSpace);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(nil,27,27,8,0, colorSpace,(CGBitmapInfo)kCGImageAlphaPremultipliedLast);
+    CFRelease(colorSpace);
    CGColorRef fillColor = [[UIColor blackColor] CGColor];
    CGContextSetFillColor(context, (CGFloat *) CGColorGetComponents(fillColor));
    CGContextBeginPath(context);
