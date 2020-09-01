@@ -15,12 +15,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import <WebKit/WebKit.h>
 
 @interface QWebViewController : UIViewController <UIWebViewDelegate> {
 
 @private
-    UIWebView *_webView;
+    WKWebView *_webView;
     NSString *_url;
     NSString *_html;
 }
