@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
                    'and efficient, you can create forms with multiple text fields, or with ' \
                    'thousands of items with no sweat!'
 
+  s.source_files = 'quickdialog', 'extras', '*.{h,m}'
   s.requires_arc = true
   s.default_subspec = "Core"
 
@@ -21,9 +22,12 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "Extras" do |sp|
-    sp.dependency 'QuickDialog/Core'
     sp.source_files = 'extras', '*.{h,m}'
   end
 
-
+  s.prefix_header_contents = <<-EOS
+#ifdef __OBJC__
+    #import "QuickDialog.h"
+#endif
+EOS
 end
