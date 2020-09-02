@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-@interface QWebViewController : UIViewController <UIWebViewDelegate> {
+@interface QWebViewController : UIViewController {
 
 @private
     WKWebView *_webView;
