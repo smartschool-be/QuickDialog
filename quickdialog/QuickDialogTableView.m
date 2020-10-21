@@ -22,11 +22,11 @@
 @synthesize root = _root;
 @synthesize deselectRowWhenViewAppears = _deselectRowWhenViewAppears;
 
-- (QuickDialogController *)controller {
+- (SMQuickDialogController *)controller {
     return _controller;
 }
 
-- (QuickDialogTableView *)initWithController:(QuickDialogController *)controller {
+- (QuickDialogTableView *)initWithController:(SMQuickDialogController *)controller {
     self = [super initWithFrame:CGRectMake(0, 0, 0, 0) style:controller.root.grouped ? UITableViewStyleGrouped : UITableViewStylePlain];
     if (self!=nil){
         _controller = controller;

@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
 NSString *QTranslate(NSString *value);
-#import "QuickDialogController.h"
+#import "SMQuickDialogController.h"
 
-@interface QuickDialogController (Helpers)
+@interface SMQuickDialogController (Helpers)
 
 @end

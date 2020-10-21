@@ -13,10 +13,10 @@
 //
 
 
-#import "QuickDialogController.h"
-#import "QuickDialogController+Navigation.h"
-#import "QuickDialogController+Loading.h"
-#import "QuickDialogController+Helpers.h"
+#import "SMQuickDialogController.h"
+#import "SMQuickDialogController+Navigation.h"
+#import "SMQuickDialogController+Loading.h"
+#import "SMQuickDialogController+Helpers.h"
 
 #import "NSMutableArray+MoveObject.h"
 #import "QuickDialogTableView.h"
@@ -57,7 +57,7 @@
 #import "QImageElement.h"
 #import "QProgressElement.h"
 #import "QProgressElement.h"
-#import "QuickDialogController+Loading.h"
+#import "SMQuickDialogController+Loading.h"
 #import "QAutoEntryElement.h"
 #import "QAutoEntryTableViewCell.h"
 #import "QDateEntryTableViewCell.h"

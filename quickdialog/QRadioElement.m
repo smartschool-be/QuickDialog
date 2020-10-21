@@ -112,7 +112,7 @@
     return self;
 }
 
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)path {
+- (void)selected:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)path {
     if ((self.sections == nil) || !self.enabled){
         return;
     }
@@ -121,7 +121,7 @@
 }
 
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     QEntryTableViewCell *cell = (QEntryTableViewCell *) [super getCellForTableView:tableView controller:controller];
 
     id selectedValue = nil;

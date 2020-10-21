@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "QuickDialogController.h"
+#import "SMQuickDialogController.h"
 
-@interface QuickDialogController (Animations)
+@interface SMQuickDialogController (Animations)
 
 - (void)switchElementsWithAnimation:(UITableViewRowAnimation)animation elements:(NSArray *)elements;
 

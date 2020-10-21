@@ -58,7 +58,7 @@
     [self reducedImageIfNeeded];
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     QImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuickformImageElement"];
     if (cell == nil) {
         cell = [[QImageTableViewCell alloc] init];
@@ -68,7 +68,7 @@
     return cell;
 }
 
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)path {
+- (void)selected:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)path {
     [tableView deselectRowAtIndexPath:path animated:YES];
 
     [self presentImagePicker:tableView controller:controller path:path];
@@ -82,7 +82,7 @@
 	[obj setValue:self.imageValue forKey:_key];
 }
 
-- (void)presentImagePicker:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller path:(NSIndexPath *)path {
+- (void)presentImagePicker:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller path:(NSIndexPath *)path {
     if ([UIImagePickerController isSourceTypeAvailable:_source]) {
         self.imagePickerController.sourceType = _source;
     } else {

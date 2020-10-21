@@ -56,7 +56,7 @@
     [self handleEditingChanged];
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     QFloatTableViewCell *cell = [[QFloatTableViewCell alloc] initWithFrame:CGRectZero];
 
     [cell.slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];

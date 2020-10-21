@@ -3,7 +3,7 @@
 #import "QRootElement.h"
 
 @class QRootElement;
-@interface QuickDialogController(Navigation)
+@interface SMQuickDialogController(Navigation)
 
 - (void)displayViewController:(UIViewController *)newController;
 

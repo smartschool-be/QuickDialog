@@ -16,7 +16,7 @@
 
 @class QSection;
 @class QuickDialogTableView;
-@class QuickDialogController;
+@class SMQuickDialogController;
 
 /**
 
@@ -60,16 +60,16 @@
 
 - (NSIndexPath*) getIndexPath;
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller;
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller;
 
 -(QTableViewCell *)getOrCreateEmptyCell:(QuickDialogTableView *)tableView;
 
-- (void)handleElementSelected:(QuickDialogController *)controller;
+- (void)handleElementSelected:(SMQuickDialogController *)controller;
 
-- (void)selectedAccessory:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath;
+- (void)selectedAccessory:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)indexPath;
 
 
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath;
+- (void)selected:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)indexPath;
 
 - (CGFloat)getRowHeightForTableView:(QuickDialogTableView *)tableView;
 

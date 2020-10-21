@@ -32,7 +32,7 @@
     return self;
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     QTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuickformButtonElement"];
     if (cell == nil){
         cell= [[QTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"QuickformButtonElement"];
@@ -45,7 +45,7 @@
     return cell;
 }
 
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
+- (void)selected:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
     if (self.enabled) {
         [super selected:tableView controller:controller indexPath:indexPath];
     }

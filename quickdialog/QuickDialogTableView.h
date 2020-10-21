@@ -25,7 +25,7 @@
 
 
 @private
-    __weak QuickDialogController *_controller;
+    __weak SMQuickDialogController *_controller;
     QRootElement *_root;
     id <UITableViewDataSource> quickDialogDataSource;
     id <UITableViewDelegate> quickDialogDelegate;
@@ -33,12 +33,12 @@
 
 @property(nonatomic, strong) QRootElement *root;
 
-@property(weak, nonatomic, readonly) QuickDialogController *controller;
+@property(weak, nonatomic, readonly) SMQuickDialogController *controller;
 
 @property(nonatomic) BOOL deselectRowWhenViewAppears;
 
 
-- (QuickDialogTableView *)initWithController:(QuickDialogController *)controller;
+- (QuickDialogTableView *)initWithController:(SMQuickDialogController *)controller;
 
 - (UITableViewCell *)cellForElement:(QElement *)element;
 

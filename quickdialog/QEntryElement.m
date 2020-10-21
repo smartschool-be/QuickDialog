@@ -15,7 +15,7 @@
 #import "QEntryElement.h"
 #import "QuickDialog.h"
 @implementation QEntryElement  {
-    __unsafe_unretained QuickDialogController *_controller;
+    __unsafe_unretained SMQuickDialogController *_controller;
 }
 
 @synthesize textValue = _textValue;
@@ -53,7 +53,7 @@
     return self;
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
 
     QEntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuickformEntryElement"];
     if (cell==nil){
@@ -71,7 +71,7 @@
     return cell;
 }
 
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
+- (void)selected:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
     [super selected:tableView controller:controller indexPath:indexPath];
 
 }

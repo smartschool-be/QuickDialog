@@ -15,10 +15,10 @@
 #import <objc/message.h>
 
 #import "QBooleanElement.h"
-#import "QuickDialogController.h"
+#import "SMQuickDialogController.h"
 
 @implementation QBooleanElement {
-    __unsafe_unretained QuickDialogController *_controller;
+    __unsafe_unretained SMQuickDialogController *_controller;
 }
 @synthesize onImage = _onImage;
 @synthesize offImage = _offImage;
@@ -53,7 +53,7 @@
     self.offImage = [UIImage imageNamed:name];
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     UITableViewCell *cell = [super getCellForTableView:tableView controller:controller];
     cell.accessoryType = self.sections!= nil ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
     cell.selectionStyle = self.sections!= nil ? UITableViewCellSelectionStyleBlue: UITableViewCellSelectionStyleNone;
@@ -79,7 +79,7 @@
     return cell;
 }
 
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
+- (void)selected:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     self.boolValue = !self.boolValue;
     if ([cell.accessoryView class] == [UIButton class]) {

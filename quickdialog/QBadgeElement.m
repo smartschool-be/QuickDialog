@@ -39,7 +39,7 @@
     return self;
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     QBadgeTableCell *cell = [[QBadgeTableCell alloc] init];
     cell.textLabel.text = _title;
     [cell applyAppearanceForElement:self];

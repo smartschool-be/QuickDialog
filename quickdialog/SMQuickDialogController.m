@@ -12,16 +12,16 @@
 // permissions and limitations under the License.
 //
 
-#import "QuickDialogController.h"
+#import "SMQuickDialogController.h"
 #import "QRootElement.h"
-@interface QuickDialogController ()
+@interface SMQuickDialogController ()
 
 + (Class)controllerClassForRoot:(QRootElement *)root;
 
 @end
 
 
-@implementation QuickDialogController {
+@implementation SMQuickDialogController {
     BOOL _keyboardVisible;
     BOOL _viewOnScreen;
     BOOL _resizeWhenKeyboardPresented;
@@ -36,16 +36,16 @@
 @synthesize popoverForChildRoot = _popoverForChildRoot;
 
 
-+ (QuickDialogController *)buildControllerWithClass:(Class)controllerClass root:(QRootElement *)root {
-    controllerClass = controllerClass==nil? [QuickDialogController class] : controllerClass;
-    return [((QuickDialogController *)[controllerClass alloc]) initWithRoot:root];
++ (SMQuickDialogController *)buildControllerWithClass:(Class)controllerClass root:(QRootElement *)root {
+    controllerClass = controllerClass==nil? [SMQuickDialogController class] : controllerClass;
+    return [((SMQuickDialogController *)[controllerClass alloc]) initWithRoot:root];
 }
 
-+ (QuickDialogController *)controllerForRoot:(QRootElement *)root {
++ (SMQuickDialogController *)controllerForRoot:(QRootElement *)root {
     Class controllerClass = [self controllerClassForRoot:root];
     if (controllerClass==nil)
         NSLog(@"Couldn't find a class for name %@", root.controllerName);
-    return [((QuickDialogController *)[controllerClass alloc]) initWithRoot:root];
+    return [((SMQuickDialogController *)[controllerClass alloc]) initWithRoot:root];
 }
 
 
@@ -54,13 +54,13 @@
     if (root.controllerName!=NULL){
         controllerClass = NSClassFromString(root.controllerName);
     } else {
-        controllerClass = [QuickDialogController class];
+        controllerClass = [SMQuickDialogController class];
     }
     return controllerClass;
 }
 
 + (UINavigationController*)controllerWithNavigationForRoot:(QRootElement *)root {
-    return [[UINavigationController alloc] initWithRootViewController:[QuickDialogController
+    return [[UINavigationController alloc] initWithRootViewController:[SMQuickDialogController
                                                                        buildControllerWithClass:[self controllerClassForRoot:root]
                                                                        root:root]];
 }
@@ -81,7 +81,7 @@
     return YES;
 }
 
-- (QuickDialogController *)initWithRoot:(QRootElement *)rootElement {
+- (SMQuickDialogController *)initWithRoot:(QRootElement *)rootElement {
     self = [super init];
     if (self) {
         self.root = rootElement;
@@ -143,9 +143,9 @@
     }
 }
 
-- (QuickDialogController *)controllerForRoot:(QRootElement *)root {
+- (SMQuickDialogController *)controllerForRoot:(QRootElement *)root {
     Class controllerClass = [[self class] controllerClassForRoot:root];
-    return [QuickDialogController buildControllerWithClass:controllerClass root:root];
+    return [SMQuickDialogController buildControllerWithClass:controllerClass root:root];
 }
 
 

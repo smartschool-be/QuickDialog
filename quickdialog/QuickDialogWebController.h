@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "QuickDialogController.h"
+#import "SMQuickDialogController.h"
 
-@interface QuickDialogWebController : QuickDialogController
+@interface QuickDialogWebController : SMQuickDialogController
 
 @property(nonatomic, strong) NSString * url;
 

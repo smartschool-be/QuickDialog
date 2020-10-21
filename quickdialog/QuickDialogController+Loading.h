@@ -12,9 +12,9 @@
 // permissions and limitations under the License.
 //
 
-#import "QuickDialogController.h"
+#import "SMQuickDialogController.h"
 
-@interface QuickDialogController (Loading)
+@interface SMQuickDialogController (Loading)
 
 -(void)loading:(BOOL)value;
 

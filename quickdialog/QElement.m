@@ -55,7 +55,7 @@
     return self;
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     QTableViewCell *cell= [self getOrCreateEmptyCell:tableView];
     
     [cell applyAppearanceForElement:self];
@@ -78,7 +78,7 @@
     return cell;
 }
 
-- (void)handleElementSelected:(QuickDialogController *)controller {
+- (void)handleElementSelected:(SMQuickDialogController *)controller {
     if (_onSelected!= nil)
         _onSelected();
     
@@ -92,7 +92,7 @@
     }
 }
 
-- (void)selectedAccessory:(QuickDialogTableView *)tableView  controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath{
+- (void)selectedAccessory:(QuickDialogTableView *)tableView  controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)indexPath{
     if (self.controllerAccessoryAction!=NULL){
         SEL selector = NSSelectorFromString(self.controllerAccessoryAction);
         if ([controller respondsToSelector:selector]) {
@@ -103,7 +103,7 @@
     }
 }
 
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
+- (void)selected:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
     [[tableView cellForRowAtIndexPath:indexPath] becomeFirstResponder];
     [self handleElementSelected:controller];
 }

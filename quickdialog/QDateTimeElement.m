@@ -18,7 +18,7 @@
 
 #import "QDateTimeElement.h"
 #import "QDateTimeInlineElement.h"
-#import "QuickDialogController.h"
+#import "SMQuickDialogController.h"
 #import "QuickDialog.h"
 
 
@@ -89,7 +89,7 @@
     return self;
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     UITableViewCell *cell = [super getCellForTableView:tableView controller:controller];
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -157,16 +157,16 @@
     [obj setValue:_dateValue forKey:_key];
 }
 
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
+- (void)selected:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)indexPath {
 
     if (self.sections==nil)
             return;
 
-    QuickDialogController * newController = [controller controllerForRoot:self];
+    SMQuickDialogController * newController = [controller controllerForRoot:self];
     newController.quickDialogTableView.scrollEnabled = NO;
     [controller displayViewController:newController];
 
-	__weak QuickDialogController *controllerForBlock = newController;
+	__weak SMQuickDialogController *controllerForBlock = newController;
 	
     newController.willDisappearCallback = ^{
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];

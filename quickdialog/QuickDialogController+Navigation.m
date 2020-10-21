@@ -1,8 +1,8 @@
-#import "QuickDialogController+Navigation.h"
+#import "SMQuickDialogController+Navigation.h"
 #import "QRootBuilder.h"
 #import "QuickDialog.h"
 
-@implementation QuickDialogController(Navigation)
+@implementation SMQuickDialogController(Navigation)
 
 - (void)displayViewController:(UIViewController *)newController {
     if ([newController isKindOfClass:[UINavigationController class]]) {
@@ -39,7 +39,7 @@
 }
 
 - (void)displayViewControllerForRoot:(QRootElement *)root {
-    QuickDialogController *newController = [self controllerForRoot: root];
+    SMQuickDialogController *newController = [self controllerForRoot: root];
     [self displayViewController:newController withPresentationMode:root.presentationMode];
 }
 

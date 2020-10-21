@@ -27,7 +27,7 @@
     return self;
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     QTableViewCell *const cell = [[QTableViewCell alloc] init];
     [cell applyAppearanceForElement:self];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -41,7 +41,7 @@
     return cell;
 }
 
-- (void)handleElementSelected:(QuickDialogController *)controller {
+- (void)handleElementSelected:(SMQuickDialogController *)controller {
     // do nothing
 
 }

@@ -33,7 +33,7 @@
 }
 
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     self.mode = UIDatePickerModeCountDownTimer;
     QDateEntryTableViewCell *cell = (QDateEntryTableViewCell *) [super getCellForTableView:tableView controller:controller];
 

@@ -13,9 +13,9 @@
 //
 
 #import <CoreGraphics/CoreGraphics.h>
-#import "QuickDialogController.h"
+#import "SMQuickDialogController.h"
 
-@implementation QuickDialogController (Loading)
+@implementation SMQuickDialogController (Loading)
 
 - (UIView *)createLoadingView {
 
