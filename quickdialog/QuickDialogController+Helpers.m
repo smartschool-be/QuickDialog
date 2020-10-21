@@ -1,4 +1,4 @@
-#import "SMQuickDialogController+Helpers.h"
+#import "QuickDialogController+Helpers.h"
 
 
 NSString *QTranslate(NSString *value) {

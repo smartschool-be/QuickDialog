@@ -1,4 +1,4 @@
-#import "SMQuickDialogController+Navigation.h"
+#import "QuickDialogController+Navigation.h"
 #import "QRootBuilder.h"
 #import "QuickDialog.h"
 

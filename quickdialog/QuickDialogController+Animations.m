@@ -1,6 +1,6 @@
-#import "SMSMQuickDialogController+Animations.h"
+#import "QuickDialogController+Animations.h"
 
-@implementation SMSMQuickDialogController (Animations)
+@implementation SMQuickDialogController (Animations)
 
 
 - (void) switchElementsWithAnimation:(UITableViewRowAnimation)animation elements:(NSArray*)elements
