@@ -28,7 +28,7 @@
     return self;
 }
 
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller {
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UITableViewCell *cell = [super getCellForTableView:tableView controller:controller];
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -36,7 +36,7 @@
 }
 
 
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)path {
+- (void)selected:(QuickDialogTableView *)tableView controller:(SMQuickDialogController *)controller indexPath:(NSIndexPath *)path {
     [self handleElementSelected:controller];
 	
     if([MFMailComposeViewController canSendMail]) {        
