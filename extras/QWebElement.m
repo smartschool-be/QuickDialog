@@ -11,60 +11,60 @@
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
-
-#import "QWebElement.h"
-#import "QuickDialog.h"
-#import "QWebViewController.h"
-
-@implementation QWebElement
-
-- (QWebElement *)initWithTitle:(NSString *)title url:(NSString *)url {
-    self = [super init];
-    if (self!=nil){
-        _url = url;
-        _title = title;
-    }
-    return self;
-}
-
-- (QWebElement *)initWithTitle:(NSString *)title HTML:(NSString *)html {
-	
-    self = [super init];
-    if (self!=nil){
-        _url = nil;
-        _title = title;
-		_html = html;
-    }
-    return self;
-}
-
--(void)setFile:(NSString *)filename {
-    _url = [[NSBundle mainBundle] pathForResource:filename ofType:@"html"];
-}
-
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    UITableViewCell *cell = [super getCellForTableView:tableView controller:controller];
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    return cell;
-}
-
-
-- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)path {
-    [self performAction];
-	if (_html) {
-		QWebViewController *webController = [[QWebViewController alloc] initWithHTML:_html];
-        webController.title = self.title;
-		[controller displayViewController:webController];
-	}
-	else {
-        if ([_url hasPrefix:@"http"] || [_url hasPrefix:@"/"]) {
-			QWebViewController *webController = [[QWebViewController alloc] initWithUrl:_url];
-			[controller displayViewController:webController withPresentationMode:self.presentationMode];
-		} else {
-			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:_url]];
-			[tableView deselectRowAtIndexPath:path animated:NO];
-		}
-	}
-}
-@end
+//
+//#import "QWebElement.h"
+//#import "QuickDialog.h"
+//#import "QWebViewController.h"
+//
+//@implementation QWebElement
+//
+//- (QWebElement *)initWithTitle:(NSString *)title url:(NSString *)url {
+//    self = [super init];
+//    if (self!=nil){
+//        _url = url;
+//        _title = title;
+//    }
+//    return self;
+//}
+//
+//- (QWebElement *)initWithTitle:(NSString *)title HTML:(NSString *)html {
+//	
+//    self = [super init];
+//    if (self!=nil){
+//        _url = nil;
+//        _title = title;
+//		_html = html;
+//    }
+//    return self;
+//}
+//
+//-(void)setFile:(NSString *)filename {
+//    _url = [[NSBundle mainBundle] pathForResource:filename ofType:@"html"];
+//}
+//
+//- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
+//    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    UITableViewCell *cell = [super getCellForTableView:tableView controller:controller];
+//    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+//    return cell;
+//}
+//
+//
+//- (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)path {
+//    [self performAction];
+//	if (_html) {
+//		QWebViewController *webController = [[QWebViewController alloc] initWithHTML:_html];
+//        webController.title = self.title;
+//		[controller displayViewController:webController];
+//	}
+//	else {
+//        if ([_url hasPrefix:@"http"] || [_url hasPrefix:@"/"]) {
+//			QWebViewController *webController = [[QWebViewController alloc] initWithUrl:_url];
+//			[controller displayViewController:webController withPresentationMode:self.presentationMode];
+//		} else {
+//			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:_url]];
+//			[tableView deselectRowAtIndexPath:path animated:NO];
+//		}
+//	}
+//}
+//@end

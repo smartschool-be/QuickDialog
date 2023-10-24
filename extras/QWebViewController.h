@@ -12,19 +12,19 @@
 // permissions and limitations under the License.
 //
 
-
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <WebKit/WebKit.h>
-
-@interface QWebViewController : UIViewController <UIWebViewDelegate> {
-
-@private
-    WKWebView *_webView;
-    NSString *_url;
-    NSString *_html;
-}
-
-- (QWebViewController *)initWithUrl:(NSString *)string;
-- (QWebViewController *)initWithHTML:(NSString *)html;
-@end
+//
+//#import <Foundation/Foundation.h>
+//#import <UIKit/UIKit.h>
+//#import <WebKit/WebKit.h>
+//
+//@interface QWebViewController : UIViewController <WKNavigationDelegate> {
+//
+//@private
+//    WKWebView *_webView;
+//    NSString *_url;
+//    NSString *_html;
+//}
+//
+//- (QWebViewController *)initWithUrl:(NSString *)string;
+//- (QWebViewController *)initWithHTML:(NSString *)html;
+//@end

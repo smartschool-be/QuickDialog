@@ -96,10 +96,21 @@
             if ([el isKindOfClass:[QEntryElement class]]){
                 QEntryElement *q = (QEntryElement*)el; 
                 CGFloat imageWidth = q.image == NULL ? 0 : self.imageView.frame.size.width;
-                CGFloat fontSize = self.textLabel.font.pointSize == 0? 17 : self.textLabel.font.pointSize;
-                CGSize size = [((QEntryElement *)el).title sizeWithFont:[self.textLabel.font fontWithSize:fontSize] forWidth:CGFLOAT_MAX lineBreakMode:NSLineBreakByWordWrapping] ;
-                CGFloat width = size.width + imageWidth + 20;
-                if (width>titleWidth)
+                CGFloat fontSize = self.textLabel.font.pointSize == 0 ? 17 : self.textLabel.font.pointSize;
+                //set a new font variable with the font of the textlabel and the above fontsize
+                UIFont *font = [UIFont fontWithName:self.textLabel.font.fontName size:fontSize];
+                
+                NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+                paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
+                                                                            forKey:NSFontAttributeName];
+                NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:((QEntryElement *)el).title attributes:attrsDictionary];
+                CGSize maxSize = CGSizeMake(totalWidth, CGFLOAT_MAX);
+                CGRect rect = [attributedText boundingRectWithSize: maxSize
+                                                           options:NSLineBreakByWordWrapping
+                                                           context:nil];
+                CGFloat width = rect.size.width + imageWidth + 20;
+                if (width > titleWidth)
                     titleWidth = width;
             }
         }
@@ -179,6 +190,7 @@
 }
 
 - (void)prepareForReuse {
+    [super prepareForReuse];
     _quickformTableView = nil;
     _entryElement = nil;
 }
@@ -192,7 +204,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 50 * USEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [_quickformTableView scrollToRowAtIndexPath:[_entryElement getIndexPath] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        [self->_quickformTableView scrollToRowAtIndexPath:[self->_entryElement getIndexPath] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     });
 
 
