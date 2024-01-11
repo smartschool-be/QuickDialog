@@ -33,9 +33,9 @@
 	}
 }
 
--(void)handleWebElementControllerAction:(QWebElement *)element {
-    NSLog(@"Web element selected for url %@", element.url);
-}
+//-(void)handleWebElementControllerAction:(QWebElement *)element {
+//    NSLog(@"Web element selected for url %@", element.url);
+//}
 
 -(void)handleChangeEntryExample:(QButtonElement *) button {
     QEntryElement *entry  = (QEntryElement *) [self.root elementWithKey:@"entryElement"];
