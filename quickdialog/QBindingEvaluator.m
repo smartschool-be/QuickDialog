@@ -152,7 +152,7 @@
                     [data setNilValueForKey:valueName];
             }
             @catch (NSException *exception) {
-                NSLog(@"Couldn't set property %@ on object %@", valueName, data);
+                NSLog(@"Couldn't set property %@", valueName);
             }
         }
     }
